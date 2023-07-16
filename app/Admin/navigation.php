@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use SleepingOwl\Admin\Model\ModelConfiguration;
 use SleepingOwl\Admin\Navigation\Page;
 
 // Default check access logic
@@ -21,9 +23,10 @@ use SleepingOwl\Admin\Navigation\Page;
 //
 // AdminSection::addMenuPage(\App\User::class)
 
+
 return [
     [
-        'title' => 'Админ Панель',
+        'title' => 'Панель',
         'icon'  => 'fas fa-tachometer-alt',
         'url'   => route('admin.dashboard'),
         'priority' => '0',

@@ -8,6 +8,7 @@ use AdminColumnEditable;
 use AdminForm;
 use AdminFormElement;
 use AdminColumnFilter;
+use App\Models\Role;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -66,13 +67,18 @@ class Users extends Section implements Initializable
             ->orWhere('name', 'like', '%' . $search . '%');
         }),
       AdminColumn::email('email', 'Электронная почта'),
-      AdminColumn::boolean('isAdmin', 'Админ'),
+      AdminColumnEditable::select('role_id')->setWidth('250px')
+      ->setModelForOptions(new Role)
+      ->setLabel('Роль')
+      ->setDisplay('role')
+      ->setTitle('Выберите роль:'),
       AdminColumn::datetime('updated_at', ' Дата обновления')
         ->setWidth('160px')
         ->setSearchable(false),
     ];
 
     $display = AdminDisplay::datatables()
+      ->with('role')
       ->setName('firstdatatables')
       ->setOrder([[0, 'asc']])
       ->setDisplaySearch(true)
@@ -107,8 +113,9 @@ class Users extends Section implements Initializable
       AdminFormElement::columns()->addColumn([
         AdminFormElement::text('name', 'Имя')
           ->required(),
-        AdminFormElement::image('image', 'Фото'),
         AdminFormElement::html('<hr>'),
+
+        AdminFormElement::image('image', 'Фото'),
 
       ], 'col-xs-12 col-sm-6 col-md-4 col-lg-4')->addColumn([
         AdminFormElement::text('email', 'Электронная почта')
@@ -118,6 +125,7 @@ class Users extends Section implements Initializable
           ->setVisible(true)
           ->setReadonly(true),
         AdminFormElement::text('id', 'ID')->setReadonly(true),
+        AdminFormElement::select('role_id', 'Роль', Role::class)->setDisplay('role')
       ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
     ]);
 
