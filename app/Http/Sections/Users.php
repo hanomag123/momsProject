@@ -9,6 +9,7 @@ use AdminForm;
 use AdminFormElement;
 use AdminColumnFilter;
 use App\Models\Role;
+use App\Models\User;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -36,7 +37,7 @@ class Users extends Section implements Initializable
   /**
    * @var string
    */
-  protected $title;
+  protected $title = 'Пользователи';
 
   /**
    * @var string
@@ -51,12 +52,13 @@ class Users extends Section implements Initializable
     $this->addToNavigation()->setPriority(100)->setIcon('fa fa-user')->setTitle('Пользователи');
   }
 
+
   /**
    * @param array $payload
    *
    * @return DisplayInterface
    */
-  public function onDisplay($payload = [])
+  public function onDisplay()
   {
     $columns = [
       AdminColumn::text('id', '#')->setWidth('50px')->setHtmlAttribute('class', 'text-center'),
@@ -68,10 +70,10 @@ class Users extends Section implements Initializable
         }),
       AdminColumn::email('email', 'Электронная почта'),
       AdminColumnEditable::select('role_id')->setWidth('250px')
-      ->setModelForOptions(new Role)
-      ->setLabel('Роль')
-      ->setDisplay('role')
-      ->setTitle('Выберите роль:'),
+        ->setModelForOptions(new Role)
+        ->setLabel('Роль')
+        ->setDisplay('role')
+        ->setTitle('Выберите роль:'),
       AdminColumn::datetime('updated_at', ' Дата обновления')
         ->setWidth('160px')
         ->setSearchable(false),
@@ -88,7 +90,7 @@ class Users extends Section implements Initializable
 
     $display->setColumnFilters([
       AdminColumnFilter::select()
-        ->setModelForOptions(\App\Models\User::class, 'name')
+        ->setModelForOptions(User::class, 'name')
         ->setLoadOptionsQueryPreparer(function ($element, $query) {
           return $query;
         })
@@ -107,6 +109,7 @@ class Users extends Section implements Initializable
    *
    * @return FormInterface
    */
+
   public function onEdit($id = null, $payload = [])
   {
     $form = AdminForm::card()->addBody([
@@ -125,7 +128,7 @@ class Users extends Section implements Initializable
           ->setVisible(true)
           ->setReadonly(true),
         AdminFormElement::text('id', 'ID')->setReadonly(true),
-        AdminFormElement::select('role_id', 'Роль', Role::class)->setDisplay('role')
+        AdminFormElement::select('role_id', 'Роль', Role::class)->setDisplay('role')->required()
       ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
     ]);
 
@@ -138,6 +141,7 @@ class Users extends Section implements Initializable
 
     return $form;
   }
+
 
   /**
    * @return FormInterface
@@ -152,8 +156,23 @@ class Users extends Section implements Initializable
    */
   public function isDeletable(Model $model)
   {
-    return true;
+    if (auth()->user()->role->role === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
+
+  public function isEditable(Model $model)
+  {
+    if (auth()->user()->role->role === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
 
   /**
    * @return void

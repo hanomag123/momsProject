@@ -24,6 +24,25 @@ use SleepingOwl\Admin\Navigation\Page;
 // AdminSection::addMenuPage(\App\User::class)
 
 
+// AdminSection::registerModel(User::class, function (ModelConfiguration $model) { 
+  // Запрет на просмотр
+  // $model->disableDisplay();
+  
+  // Запрет на создание
+  // $model->disableCreating();
+  
+  // Запрет на редактирование
+  // $model->disableEditing();
+  
+  // Запрет на удаление
+  // $model->disableDeleting();
+
+    
+  // Запрет на восстановление
+  // $model->disableRestoring();
+// });
+
+
 return [
     [
         'title' => 'Панель',
