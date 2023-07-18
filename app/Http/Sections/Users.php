@@ -128,7 +128,7 @@ class Users extends Section implements Initializable
           ->setVisible(true)
           ->setReadonly(true),
         AdminFormElement::text('id', 'ID')->setReadonly(true),
-        AdminFormElement::select('role_id', 'Роль', Role::class)->setDisplay('role')->required()
+        AdminFormElement::select('role_id', 'Роль', Role::class)->setDisplay('role')
       ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
     ]);
 

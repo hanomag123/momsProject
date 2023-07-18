@@ -17,7 +17,7 @@ class AdminAuthenticate
    */
   public function handle(Request $request, Closure $next, $guard = null): Response
   {
-    if (auth()->user()->role->role === 'guest') {
+    if (empty(auth()->user()->role)) {
       abort(403, 'Access dinied');
     } else {
       return $next($request);
