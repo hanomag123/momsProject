@@ -1,0 +1,438 @@
+@import "fonts";
+
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+@import "vars";
+@import "mixins";
+@import "vendor/reset";
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  z-index: 100000000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s opacity;
+  will-change: opacity;
+
+  .spin {
+    transform: scale(3);
+  }
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+
+  @include breakpoint($sm-bp) {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0.2rem solid #387B46;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #387B46 transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+  z-index: 1;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+  z-index: 1;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+  z-index: 1;
+}
+
+.lds-ring .logo {
+  animation: none;
+  border-color: none;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: calc(100vw / 1925 * 10);
+  // @include breakpoint($cos-bp) {
+  //   font-size: calc(100vw / 1600 * 10);
+  // }
+
+  @include breakpoint($xl-bp) {
+    font-size: calc(100vw / 768 * 10);
+  }
+
+  @include breakpoint($sm-bp) {
+    font-size: calc(100vw / 375 * 10);
+  }
+}
+
+// ::-webkit-scrollbar {
+//   width: 0;
+// }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: 'Montserrat';
+  color: var(--black);
+}
+
+body {
+  background-color: var(--white);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+  &::-webkit-scrollbar {
+    width: 0.5rem; 
+  }
+  &::-webkit-scrollbar:horizontal {
+    height: 0;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--lgrey);
+    border-radius: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--green);
+    border-radius: 0.5rem;
+  }
+}
+
+img {
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+svg {
+  transition: all 0.1s linear;
+}
+
+/* Vendors */
+
+@import './blocks/swiper.scss';
+
+.container {
+  padding-right: 15rem;
+  padding-left: 15rem;
+  @include breakpoint($xl-bp) {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+
+  @include breakpoint($sm-bp) {
+    padding-right: 1.6rem;
+    padding-left: 1.6rem;
+  }
+}
+.table-container {
+  padding-right: 0;
+  margin-left: 0;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 0.5rem; 
+  }
+  &::-webkit-scrollbar:horizontal {
+    height: 0.7rem;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--lgrey);
+    border-radius: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--green);
+    border-radius: 0.5rem;
+  }
+  @include breakpoint($xl-bp) {
+    padding-left: 4rem;
+    &::-webkit-scrollbar:horizontal {
+      height: 0;
+    }
+  }
+
+  @include breakpoint($sm-bp) {
+    padding-left: 1.6rem;
+  }
+}
+
+/* Blocks */
+
+
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.img-contain {
+  display: block;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.img-cover {
+  display: block;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+h2,
+.h2 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 4.8rem;
+  line-height: 110%;
+
+  @include breakpoint($xl-bp) {
+    font-size: 2.8rem;
+    line-height: 108%;
+  }
+}
+
+h3,
+.h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 120%;
+
+  @include breakpoint($xl-bp) {
+    font-size: 2rem;
+  }
+}
+
+h4,
+.h4 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 125%;
+
+  @include breakpoint($xl-bp) {
+    font-size: 1.4rem;
+  }
+}
+
+.text-1 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.text-2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 140%;
+}
+
+.mob-text-2 {
+  @include breakpoint($xl-bp) {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 140%;
+  }
+}
+
+.text-3 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 150%;
+}
+
+.mob-text-3 {
+  @include breakpoint($xl-bp) {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 150%;
+  }
+}
+
+.text-link {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 140%;
+  @include breakpoint($sm-bp) {
+    font-size: 1.2rem;
+  }
+}
+
+.text-button {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 125%;
+  /* identical to box height, or 20px */
+
+  text-transform: uppercase;
+
+  @include breakpoint($xl-bp) {
+    font-size: 1.4rem;
+  }
+}
+
+.page-button {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 125%;
+  /* identical to box height, or 20px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  justify-content: center;
+  /* White */
+  color: var(--white);
+
+  background: var(--green);
+  border-radius: 0.5rem;
+  padding: 1.6rem 3rem;
+  border: 0;
+  flex: none;
+  border: 0.1rem solid transparent;
+  transition: color .3s, background-color .3s;
+  &:hover {
+    background-color: transparent;
+    color: var(--green);
+    border: 0.1rem solid var(--green);
+  }
+}
+
+.text-black {
+  color: var(--black);
+}
+
+.text-white {
+  color: var(--white);
+}
+
+.text-green {
+  color: var(--green);
+}
+
+.text-red {
+  color: var(--red);
+}
+
+.page-margin {
+  margin-top: 20rem;
+
+  @include breakpoint($xl-bp) {
+    margin-top: 10rem;
+  }
+}
+
+.page-margin-container {
+  margin-top: 8rem;
+
+  @include breakpoint($xl-bp) {
+    margin-top: 4rem;
+  }
+}
+
+button.page-link {
+  padding: 0;
+  border: 0;
+  background-color: unset;
+  text-align: start;
+}
+.page-link {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.page-justify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+
+@keyframes fadeEffect {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+.text-center {
+  text-align: center;
+}
+
+@import './blocks/menu.scss';
+@import './blocks/main.scss';
+@import './blocks/header.scss';
+@import './blocks/footer.scss';
+@import './blocks/contacts.scss';
+@import './blocks/faq.scss';
+@import './blocks/maininfo.scss';
+@import './blocks/abiturients.scss';
+@import './blocks/specialties.scss';

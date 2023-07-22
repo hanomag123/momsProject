@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
           RoleSeeder::class,
+          LanguageSeeder::class,
+          MainBlockSeeder::class,
         ]);
 
         User::create([
@@ -35,9 +37,6 @@ class DatabaseSeeder extends Seeder
           'password' => Hash::make('admin'),
           'role_id' => Role::where('role', 'admin')->first()->id,
         ]);
-
-        User::factory(10)->create();
-
 
     }
 }

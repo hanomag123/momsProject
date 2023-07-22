@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\MainBlock;
+use App\Models\Page;
 use App\Models\User;
 use SleepingOwl\Admin\Contracts\Widgets\WidgetsRegistryInterface;
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
@@ -14,6 +16,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
    */
   protected $sections = [
     User::class => 'App\Http\Sections\Users',
+    MainBlock::class => 'App\Http\Sections\MainBlock',
   ];
 
   protected $widgets = [

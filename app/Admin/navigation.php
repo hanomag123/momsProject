@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\MainBlock;
 use App\Models\User;
 use SleepingOwl\Admin\Model\ModelConfiguration;
 use SleepingOwl\Admin\Navigation\Page;
@@ -25,88 +26,148 @@ use SleepingOwl\Admin\Navigation\Page;
 
 
 // AdminSection::registerModel(User::class, function (ModelConfiguration $model) { 
-  // Запрет на просмотр
-  // $model->disableDisplay();
-  
-  // Запрет на создание
-  // $model->disableCreating();
-  
-  // Запрет на редактирование
-  // $model->disableEditing();
-  
-  // Запрет на удаление
-  // $model->disableDeleting();
+// Запрет на просмотр
+// $model->disableDisplay();
 
-    
-  // Запрет на восстановление
-  // $model->disableRestoring();
+// Запрет на создание
+// $model->disableCreating();
+
+// Запрет на редактирование
+// $model->disableEditing();
+
+// Запрет на удаление
+// $model->disableDeleting();
+
+
+// Запрет на восстановление
+// $model->disableRestoring();
 // });
 
+// AdminNavigation::setFromArray([
+//   [
+//      'title' => 'Permissions',
+//      'icon' => 'fa fa-group',
+//      'pages' => [
+//        [
+//           'title' => 'Users',
+//           'url' => ...
+//        ],
+//        [
+//           'title' => 'Roles',
+//           'url' => ...
+//        ],
+//      ]
+//    ],
+//    (new \SleepingOwl\Admin\Navigation\Page(\App\Model\News::class))
+//       ->setIcon('fa fa-newspaper-o')
+//       ->setPriority(0)
+// ]);
 
-return [
-    [
-        'title' => 'Панель',
-        'icon'  => 'fas fa-tachometer-alt',
-        'url'   => route('admin.dashboard'),
-        'priority' => '0',
-    ],
+AdminNavigation::setFromArray([
+  [
+    'title' => 'Страницы',
+    'icon' => 'fa fa-file',
+    'pages' => [
 
-    [
+      [
+        'title' => 'Главная',
+        'pages' => [
+          (new Page(MainBlock::class))
+          ->setTitle('Главный блок')
+          ->setPriority(0),
+        ]
+      ],
+    ]
+  ],
+  [
+    'title' => 'Дополнительно',
+    'pages' => [
+
+      [
         'title' => 'Информация',
         'icon'  => 'fas fa-info-circle',
         'url'   => route('admin.information'),
-    ],
+      ],
+    ]
+  ],
+  [
+    'title' => 'Панель',
+    'icon'  => 'fas fa-tachometer-alt',
+    'url'   => route('admin.dashboard'),
+    'priority' => '0',
+  ],
+]);
 
-    // Examples
-    // [
-    //    'title' => 'Content',
-    //    'pages' => [
-    //
-    //        \App\User::class,
-    //
-    //        // or
-    //
-    //        (new Page(\App\User::class))
-    //            ->setPriority(100)
-    //            ->setIcon('fas fa-users')
-    //            ->setUrl('users')
-    //            ->setAccessLogic(function (Page $page) {
-    //                return auth()->user()->isSuperAdmin();
-    //            }),
-    //
-    //        // or
-    //
-    //        new Page([
-    //            'title'    => 'News',
-    //            'priority' => 200,
-    //            'model'    => \App\News::class
-    //        ]),
-    //
-    //        // or
-    //        (new Page(/* ... */))->setPages(function (Page $page) {
-    //            $page->addPage([
-    //                'title'    => 'Blog',
-    //                'priority' => 100,
-    //                'model'    => \App\Blog::class
-	//		      ));
-    //
-	//		      $page->addPage(\App\Blog::class);
-    //	      }),
-    //
-    //        // or
-    //
-    //        [
-    //            'title'       => 'News',
-    //            'priority'    => 300,
-    //            'accessLogic' => function ($page) {
-    //                return $page->isActive();
-    //		      },
-    //            'pages'       => [
-    //
-    //                // ...
-    //
-    //            ]
-    //        ]
-    //    ]
-    // ]
-];
+
+// return [
+//   'title' => 'Permissions',
+//   'icon' => 'fa fa-group',
+//   'pages' => [
+//     [
+//       'title' => 'Панель',
+//       'icon'  => 'fas fa-tachometer-alt',
+//       'url'   => route('admin.dashboard'),
+//       'priority' => '0',
+//     ],
+
+//     [
+//       'title' => 'Информация',
+//       'icon'  => 'fas fa-info-circle',
+//       'url'   => route('admin.information'),
+//     ],
+//   ]
+
+
+//   // Examples
+//   // [
+//   //    'title' => 'Content',
+//   //    'pages' => [
+//   //
+//   //        \App\User::class,
+//   //
+//   //        // or
+//   //
+//   //        (new Page(\App\User::class))
+//   //            ->setPriority(100)
+//   //            ->setIcon('fas fa-users')
+//   //            ->setUrl('users')
+//   //            ->setAccessLogic(function (Page $page) {
+//   //                return auth()->user()->isSuperAdmin();
+//   //            }),
+//   //
+//   //        // or
+//   //
+//   //        new Page([
+//   //            'title'    => 'News',
+//   //            'priority' => 200,
+//   //            'model'    => \App\News::class
+//   //        ]),
+//   //
+//   //        // or
+//   //        (new Page(/* ... */))->setPages(function (Page $page) {
+//   //            $page->addPage([
+//   //                'title'    => 'Blog',
+//   //                'priority' => 100,
+//   //                'model'    => \App\Blog::class
+//   //		      ));
+//   //
+//   //		      $page->addPage(\App\Blog::class);
+//   //	      }),
+//   //
+//   //        // or
+//   //
+//   //        [
+//   //            'title'       => 'News',
+//   //            'priority'    => 300,
+//   //            'accessLogic' => function ($page) {
+//   //                return $page->isActive();
+//   //		      },
+//   //            'pages'       => [
+//   //
+//   //                // ...
+//   //
+//   //            ]
+//   //        ]
+//   //    ]
+//   // ]
+// ];
