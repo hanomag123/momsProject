@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Language;
 use App\Models\MainBlock;
 use App\Models\Page;
 use App\Models\User;
@@ -16,7 +17,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
    */
   protected $sections = [
     User::class => 'App\Http\Sections\Users',
-    MainBlock::class => 'App\Http\Sections\MainBlock',
+    MainBlock::class => 'App\Http\Sections\MainBlocks',
+    Language::class => 'App\Http\Sections\Languages',
   ];
 
   protected $widgets = [

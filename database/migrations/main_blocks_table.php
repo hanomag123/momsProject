@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('main_blocks', function (Blueprint $table) {
             $table->id();
-            $table->integer('item_id')->nullable();
             $table->string('title', 40)->nullable();
             $table->string('intro', 700)->nullable();
             $table->foreignId('language_id')->default(1)->constrained();

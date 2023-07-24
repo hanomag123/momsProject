@@ -15,7 +15,6 @@ class MainBlockSeeder extends Seeder
     public function run(): void
     {
       $languages = Language::pluck('id');
-
       $mainBlocks = [
         [
           'title' => 'Детский сад №10 г.Минска',
@@ -26,6 +25,13 @@ class MainBlockSeeder extends Seeder
           'intro' => 'Сардэчна запрашаем у наш дзіцячы сад! Мы прапануем кахаючую і клапатлівую абстаноўку, дзе ваша дзіця зможа гуляць, вучыцца і расквітаць. Наша каманда прафесіяналаў з гарачым сэрцам і шырокімі ведамі дапаможа развіць навыкі вашага дзіцяці, ствараючы аснову для будучага поспеху.',
         ],
       ];
-        
+
+      foreach($mainBlocks as $key => $value) {
+        MainBlock::create([
+          'title' => $value['title'],
+          'intro' => $value['intro'],
+          'language_id' => $languages[$key],
+        ]);
+      };
     }
 }

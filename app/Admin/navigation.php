@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Sections\MainBlocks;
+use App\Models\Language;
 use App\Models\MainBlock;
 use App\Models\User;
 use SleepingOwl\Admin\Model\ModelConfiguration;
@@ -73,21 +75,25 @@ AdminNavigation::setFromArray([
         'title' => 'Главная',
         'pages' => [
           (new Page(MainBlock::class))
-          ->setTitle('Главный блок')
-          ->setPriority(0),
+            ->setTitle('Главный блок')
+            ->setPriority(0),
         ]
       ],
     ]
   ],
   [
     'title' => 'Дополнительно',
+    'icon'  => 'fas fa-info-circle',
     'pages' => [
 
       [
         'title' => 'Информация',
-        'icon'  => 'fas fa-info-circle',
         'url'   => route('admin.information'),
       ],
+
+      (new Page(Language::class))
+        ->setTitle('Языки')
+        ->setPriority(0),
     ]
   ],
   [

@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\MainBlock;
+// use App\Models\MainBlock;
 
-$mainBlock = MainBlock::firstOrCreate()->toArray();
-$title = $mainBlock['title-ru'];
-$intro = $mainBlock['intro-ru'];
+// $mainBlock = MainBlock::firstOrCreate()->toArray();
+// $title = $mainBlock['title-ru'];
+// $intro = $mainBlock['intro-ru'];
 
 return [
   'name' => [
@@ -14,6 +14,6 @@ return [
   'intro' => 'Добро пожаловать в наш детский сад! Мы предлагаем любящую и заботливую обстановку, где ваш ребенок сможет играть, учиться и расцветать. Наша команда профессионалов с горячим сердцем и широкими знаниями поможет развить навыки вашего ребенка, создавая основу для будущего успеха.',
   'eye' => 'версия для слабовидящих',
   'address' => 'г.Минск Улица, Щербакова 19а',
-  'main-block' => compact('title', 'intro'),
+  // 'main-block' => compact('title', 'intro'),
 ]
 ?>

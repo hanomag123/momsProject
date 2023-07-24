@@ -14,6 +14,6 @@ class MainBlock extends Model
     protected $guarded = [];
 
     public function language(): BelongsTo {
-      return $this->belongsTo(MainBlock::class);
+      return $this->belongsTo(Language::class);
     }
 }
