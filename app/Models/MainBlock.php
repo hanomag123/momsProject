@@ -16,4 +16,8 @@ class MainBlock extends Model
     public function language(): BelongsTo {
       return $this->belongsTo(Language::class);
     }
+
+    public function image(): BelongsTo {
+      return $this->belongsTo(Image::class);
+    }
 }

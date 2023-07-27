@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Language;
 use App\Models\MainBlock;
@@ -22,17 +23,16 @@ class MainController extends Controller
       return view('main', compact('mainBlock'));
 
     } else {
-      $this->setLocale('ru');
+      Helper::setLocale(config('app.fallback_locale'));
     }
 
   }
 
-  public function setLocale($locale)
-  {
-    if (!in_array($locale, Language::pluck('name')->toArray())) {
-      abort(404);
-    }
-    session(['user_locale' => $locale]);
-    return redirect()->back();
+  public function oneWindow() {
+    return view('onewindow');
+  }
+
+  public function aboutus() {
+    return view('onewindow');
   }
 }

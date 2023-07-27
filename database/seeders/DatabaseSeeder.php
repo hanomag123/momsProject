@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
-use DB;
 use Hash;
 use Illuminate\Database\Seeder;
 
@@ -19,9 +18,13 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+          NavbarSeeder::class,
           RoleSeeder::class,
           LanguageSeeder::class,
+          ImageSeeder::class,
           MainBlockSeeder::class,
+          ArticleSeeder::class,
+          ArticleTranslationSeeder::class,
         ]);
 
         User::create([

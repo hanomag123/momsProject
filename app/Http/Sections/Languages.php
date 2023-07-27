@@ -114,7 +114,7 @@ class Languages extends Section implements Initializable
    */
   public function isDeletable(Model $model)
   {
-    return false;
+    return true;
   }
 
   /**

@@ -3,23 +3,14 @@
 namespace App\Http\Sections;
 
 use AdminDisplay;
-use AdminColumn;
 use AdminForm;
 use AdminFormElement;
-use AdminColumnFilter;
 use AdminSection;
 use App\Models\Language;
 use App\Models\MainBlock;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Form\Buttons\Restore;
 use SleepingOwl\Admin\Section;
-use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Admin\Contracts\Initializable;
-use SleepingOwl\Admin\Form\Buttons\Save;
-use SleepingOwl\Admin\Form\Buttons\SaveAndClose;
-use SleepingOwl\Admin\Form\Buttons\Cancel;
-use SleepingOwl\Admin\Form\Buttons\SaveAndCreate;
 use SleepingOwl\Admin\Form\FormElements;
 
 /**
@@ -89,6 +80,8 @@ class MainBlocks extends Section implements Initializable
         AdminFormElement::textarea('intro', 'Описание')
           ->setHtmlAttribute('style', 'height:8rem;')
           ->required(),
+
+        AdminFormElement::image('image.url', 'картинка')->required(),
       ])
     );
 

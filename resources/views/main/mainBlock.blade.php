@@ -8,7 +8,10 @@
 
       </div>
       <div class="main-block-right img-cover">
-          <img src="/images/main/main-1.jpg" alt="main">
+        @if ($mainBlock->image)
+          <img src="{{url($mainBlock->image->url)}}" alt="main">
+        @endif
+          
       </div>
   </div>
 

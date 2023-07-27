@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
+use App\Models\ArticleTranslation;
 use App\Models\Language;
 use App\Models\MainBlock;
-use App\Models\Page;
 use App\Models\User;
 use SleepingOwl\Admin\Contracts\Widgets\WidgetsRegistryInterface;
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
@@ -19,6 +20,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
     User::class => 'App\Http\Sections\Users',
     MainBlock::class => 'App\Http\Sections\MainBlocks',
     Language::class => 'App\Http\Sections\Languages',
+    Article::class => 'App\Http\Sections\Articles',
+    ArticleTranslation::class => 'App\Http\Sections\ArticleTranslations',
   ];
 
   protected $widgets = [

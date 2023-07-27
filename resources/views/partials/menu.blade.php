@@ -34,13 +34,16 @@
 
     <nav class="menu__bottom container">
         <ul>
-            <li class="active"><a href="#">Сведения об<br>образовательной организации</a></li>
+            @foreach ($navbars as $item)
+            <li><a href="{{ route($item->route) }}">{{$item->name}}</a></li>
+            @endforeach
+            {{-- <li class="active"><a href="#">Сведения об<br>образовательной организации</a></li>
             <li><a href="#">Специальности</a></li>
             <li><a href="#">Абитуриентам</a></li>
             <li><a href="#">Студентам</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Новости</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Контакты</a></li> --}}
         </ul>
     </nav>
 </div>

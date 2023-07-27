@@ -30,8 +30,10 @@ class MainBlockSeeder extends Seeder
         MainBlock::create([
           'title' => $value['title'],
           'intro' => $value['intro'],
+          'ref_id' => 1,
           'language_id' => $languages[$key],
         ]);
       };
+
     }
 }
