@@ -1,6 +1,6 @@
 <header class="header">
 
-  <a href="#" class="header__logo-container"> 
+  <a href="{{route('main')}}" class="header__logo-container"> 
     <div class="header__logo">
       <img src="/images/logo/logo.png" alt="logo">
     </div>

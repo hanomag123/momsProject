@@ -86,9 +86,9 @@ class Articles extends Section implements Initializable
 
     $display->setColumnFilters([
       AdminColumnFilter::range()->setFrom(
-        AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d.m.Y')
+        AdminColumnFilter::date()->setPlaceholder('От')->setFormat('d.m.Y')
       )->setTo(
-        AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d.m.Y')
+        AdminColumnFilter::date()->setPlaceholder('До')->setFormat('d.m.Y')
       )->setColumnName('id'),
 
     ]);
@@ -128,8 +128,8 @@ class Articles extends Section implements Initializable
         $languages = Language::all();
         foreach ($languages as $language) {
           $item = ArticleTranslation::firstOrCreate([
-            'language_id' => $language->id,
             'article_id' => $id,
+            'language_id' => $language->id,
           ]);
           AdminSection::getModel(ArticleTranslation::class)->setModelValue($item);
           $section = AdminSection::getModel(ArticleTranslation::class);
@@ -140,9 +140,6 @@ class Articles extends Section implements Initializable
       }
       return $tabs;
     });
-
-
-
 
     return $display;
   }

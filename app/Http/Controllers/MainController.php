@@ -6,7 +6,6 @@ use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Language;
 use App\Models\MainBlock;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 class MainController extends Controller
@@ -28,11 +27,14 @@ class MainController extends Controller
 
   }
 
-  public function oneWindow() {
+  public function aboutus() {
+    return view('aboutus');
+  }
+
+  public function oneWindow($slug) {
+    dd($slug);
     return view('onewindow');
   }
 
-  public function aboutus() {
-    return view('onewindow');
-  }
+
 }

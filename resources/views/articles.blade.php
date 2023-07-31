@@ -15,12 +15,14 @@
         <ul class="news-list page-margin-container">
 
             @foreach ($articles as $key => $article)
-                @isset($article)
+                @isset($article, $article->slug)
                     <li class="news-item">
                         <a href="{{ route('article', $article->slug) }}">
-                            <span class="img-cover rounded news-img"><img src="{{ $images[$key] }}" alt="news"></span>
-                            <span class="news-title h4">{{ $article->title }}</span>
-                            <span class="news-desc text-2">{{ $article->content }}</span>
+                            @isset ($images[$key])
+                                <div class="img-cover rounded news-img"><img src="{{ $images[$key] }}" alt="news"></div>
+                            @endisset
+                            <div class="news-title h4">{{ $article->title }}</div>
+                            <div class="news-desc text-2">{!! $article->content !!}</div>
                         </a>
                     </li>
                 @endisset
@@ -37,5 +39,6 @@
                 </a>
             </li>
         </ul>
+        {{$paginate->links()}}
     </section>
 @endsection

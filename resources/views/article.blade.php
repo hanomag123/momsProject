@@ -14,6 +14,8 @@
         <h1 class="h2 title-margin">Колледж стал лидером в области цифровых технологий</h1>
 
         <div class="new-container page-margin-container">
+
+            {!!$article->content!!}
             <figure><img src="./assets/images/news/news-1.jpg" alt="news"></figure>
 
             <h3>Lorem ipsum dolor sit amet.</h3>

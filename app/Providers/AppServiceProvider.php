@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Navbar;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -25,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
       {
           $navbars = Navbar::orderBy('ordering')->get();
           $view->with('navbars', $navbars);
+
+          Paginator::defaultView('vendor.pagination.bootstrap-5');
       });
     }
 }

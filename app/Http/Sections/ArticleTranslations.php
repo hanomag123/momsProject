@@ -2,23 +2,15 @@
 
 namespace App\Http\Sections;
 
-use AdminDisplay;
-use AdminColumn;
+
 use AdminForm;
 use AdminFormElement;
-use AdminColumnFilter;
-use AdminSection;
 use App\Models\ArticleTranslation;
-use App\Models\Language;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
-use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Form\Buttons\Save;
 use SleepingOwl\Admin\Form\Buttons\SaveAndClose;
-use SleepingOwl\Admin\Form\Buttons\Cancel;
-use SleepingOwl\Admin\Form\Buttons\SaveAndCreate;
 use SleepingOwl\Admin\Form\FormElements;
 
 /**
@@ -61,18 +53,34 @@ class ArticleTranslations extends Section implements Initializable
   public function onEdit($id, $payload)
   {
     $form = [];
+    $form = [
+      AdminFormElement::text('title', 'Заголовок статьи'),
+      AdminFormElement::wysiwyg('content', 'Текст статьи')->setId('content' . $id)->setEditor('ckeditor5')
+        ->setParameters([
+          // 'toolbar' => [ 'heading', '|', 'italic','bold', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'sourceEditing', 'image' ],
+          'heading' => [
+            'options' => [
+              ['model' => 'paragraph', 'title' => 'Paragraph', 'class' => 'ck-heading_paragraph'],
+              ['model' => 'heading1', 'view' => 'h1', 'title' => 'Heading 1', 'class' => 'ck-heading_heading1'],
+              ['model' => 'heading2', 'view' => 'h2', 'title' => 'Heading 2', 'class' => 'ck-heading_heading2'],
+              ['model' => 'heading3', 'view' => 'h3', 'title' => 'Heading 3', 'class' => 'ck-heading_heading3'],
+              ['model' => 'heading4', 'view' => 'h4', 'title' => 'Heading 4', 'class' => 'ck-heading_heading4'],
+              [
+                'model' => 'headingFancy',
+                'view' => [
+                  'name' => 'h2',
+                  'classes' => 'fancy'
+                ],
+                'title' => 'Heading 2 (fancy)',
+                'class' => 'ck-heading_heading2_fancy',
 
-    if (isset($payload['language_id'])) {
-      $form = [
-        AdminFormElement::text('language_id')
-          ->setDefaultValue($payload['language_id'])
-          ->setReadonly(true)
-          ->setHtmlAttribute('hidden', true),
-        AdminFormElement::text('title', 'Заголовок статьи'),
-        AdminFormElement::wysiwyg('content', 'Текст статьи')
-        ->setId('content' . $payload['language_id'])
-      ];
-    }
+                // It needs to be converted before the standard 'heading2'.
+                'converterPriority' => 'high'
+              ]
+            ]
+          ]
+        ]),
+    ];
 
     $formVisual = AdminForm::form()->addElement(
       new FormElements($form)

@@ -14,21 +14,7 @@ class NavbarSeeder extends Seeder
     public function run(): void
     {
       $links = [
-        [
-            'name' => 'Main',
-            'route' => 'main',
-            'ordering' => 1,
-        ],
-        [
-            'name' => 'Window',
-            'route' => 'onewindow',
-            'ordering' => 2,
-        ],
-        [
-            'name' => 'About US',
-            'route' => 'aboutus',
-            'ordering' => 3,
-        ]
+
     ];
 
     foreach ($links as $navbar) {

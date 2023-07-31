@@ -6,6 +6,7 @@ use App;
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\ArticleTranslation;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -16,18 +17,21 @@ class ArticleController extends Controller
 
       $articles=[];
       $images=[];
-
-      foreach(Article::all() as $article) {
+      foreach(Article::paginate(1) as $article) {
         $images[] = $article->image;
         $articles[] = Article::local($article)->first();
       }
 
-      return view('articles', compact('articles', 'images'));
+      $paginate = Article::paginate(1);
+
+      return view('articles', compact('articles', 'images', 'paginate'));
 
     } 
 
     public function show($slug) {
-      return view('article');
+      $article = ArticleTranslation::where('slug', $slug)->first();
+
+      return view('article', compact('article'));
     }
 
 
