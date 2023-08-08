@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\ArticleTranslation;
+use App\Models\Form;
 use App\Models\Language;
 use App\Models\MainBlock;
 use App\Models\User;
@@ -22,6 +23,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
     Language::class => 'App\Http\Sections\Languages',
     Article::class => 'App\Http\Sections\Articles',
     ArticleTranslation::class => 'App\Http\Sections\ArticleTranslations',
+    Form::class => 'App\Http\Sections\Forms',
   ];
 
   protected $widgets = [

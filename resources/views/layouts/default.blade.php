@@ -12,12 +12,17 @@
 
     <div class="preloader" id="preloader">
         <div class="spin">
-            <div class="lds-ring"><div></div><div></div><div></div><div class="logo"><img src="/images/logo/logo.png" alt="logo"></div></div>
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="logo"><img src="/images/logo/logo.png" alt="logo"></div>
+            </div>
         </div>
     </div>
 
     <div class="page">
-        
+
         <!-- Header -->
 
         @include('partials.header')
@@ -26,13 +31,15 @@
         <main>
 
             @section('content')
-                
+
             @show
 
         </main>
 
         <!-- To Top Button-->
-        <button class="to-top-button"><svg><use href='#arrowL'></use></svg></button>
+        <button class="to-top-button"><svg>
+                <use href='#arrowL'></use>
+            </svg></button>
 
         <!-- Footer -->
         @include('partials.footer')
@@ -40,13 +47,19 @@
         <!-- Policies-->
         @include('partials.policy')
 
+        <!-- Feedback-->
+        @include('partials.feedback')
+
     </div>
 
     <!-- JS -->
-    @vite(['resources/js/main.js', 'resources/js/vendor.js'])
+    @vite(['resources/js/main.js', 'resources/js/vendor.js', 'resources/js/mail.js'])
 
     <script>
-        window.onload = function() { preloader.style.opacity = "0"; setTimeout(() => preloader.style.display = 'none', 300);}
+        window.onload = function() {
+            preloader.style.opacity = "0";
+            setTimeout(() => preloader.style.display = 'none', 300);
+        }
     </script>
 </body>
 

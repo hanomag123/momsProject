@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/scss/style.scss',
                 'resources/js/main.js',
                 'resources/js/vendor.js',
+                'rosources/js/mail.js',
             ],
             refresh: true,
         }),

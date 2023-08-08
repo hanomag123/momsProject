@@ -96,12 +96,12 @@ AdminNavigation::setFromArray([
         ->setPriority(0),
     ]
   ],
-  [
-    'title' => 'Панель',
-    'icon'  => 'fas fa-tachometer-alt',
-    'url'   => route('admin.dashboard'),
-    'priority' => '0',
-  ],
+  // [
+  //   'title' => 'Панель',
+  //   'icon'  => 'fas fa-tachometer-alt',
+  //   'url'   => route('admin.dashboard'),
+  //   'priority' => '0',
+  // ],
 ]);
 
 

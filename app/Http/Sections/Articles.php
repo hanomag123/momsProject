@@ -68,12 +68,14 @@ class Articles extends Section implements Initializable
       AdminColumn::text('id', '#')->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
       AdminColumn::image('image', 'Картинка'),
       AdminColumn::lists('articleTranslations.title', 'Названия'),
+      AdminColumn::text('date', 'Дата')->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
       AdminColumn::text('created_at', 'Created / updated', 'updated_at')
         ->setWidth('160px')
         ->setOrderable(function ($query, $direction) {
           $query->orderBy('updated_at', $direction);
         })
         ->setSearchable(false),
+
     ];
 
     $display = AdminDisplay::datatables()

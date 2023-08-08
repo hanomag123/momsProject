@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+
         $this->call([
           NavbarSeeder::class,
           RoleSeeder::class,
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder
           'password' => Hash::make('manager'),
           'role_id' => Role::where('role', 'manager')->first()->id,
         ]);
-
+  
         User::create([
           'email' => 'admin@admin.com',
           'name' => 'admin',

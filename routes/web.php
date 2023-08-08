@@ -2,8 +2,8 @@
 
 use App\Helper\Helper;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,11 +23,13 @@ Route::get('/setLocale/{locale}', [Helper::class, 'setLocale'])->name('setLocale
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('article');
 
+Route::post('/form-request', [FormController::class, 'index']);
+
 Route::get('/map', function () {
   return view('map');
 });
 
-Route::get('/aboutus', [MainController::class, 'aboutus'])->name('aboutus');
+Route::get('/aboutus', [MainController::class, 'aboutus'])->name('oneWindow');
 
 require __DIR__.'/auth.php';
 

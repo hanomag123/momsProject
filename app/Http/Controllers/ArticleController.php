@@ -17,12 +17,12 @@ class ArticleController extends Controller
 
       $articles=[];
       $images=[];
-      foreach(Article::paginate(1) as $article) {
+      foreach(Article::paginate(2) as $article) {
         $images[] = $article->image;
         $articles[] = Article::local($article)->first();
       }
 
-      $paginate = Article::paginate(1);
+      $paginate = Article::paginate(2);
 
       return view('articles', compact('articles', 'images', 'paginate'));
 

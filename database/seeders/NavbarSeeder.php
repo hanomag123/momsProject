@@ -8,17 +8,20 @@ use Illuminate\Database\Seeder;
 
 class NavbarSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-      $links = [
-
+  /**
+   * Run the database seeds.
+   */
+  public function run(): void
+  {
+    $links = [
+      [
+        'name' => 'Одно окно',
+        'route' => 'oneWindow'
+      ],
     ];
 
     foreach ($links as $navbar) {
-        Navbar::create($navbar);
+      Navbar::create($navbar);
     }
-    }
+  }
 }
