@@ -1,0 +1,45 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  
+  margin-top: 4rem;
+
+  max-width: 40rem;
+  margin-left: auto;
+  .page-item.disabled {
+    opacity: 0.5;
+  }
+  .page-item.active {
+    flex: 0 0 auto;
+    .page-link {
+      color: var(--green);
+      background-color: transparent;
+      border: 0.1rem solid var(--green);
+    }
+  }
+  .page-link {
+    padding: 0.5rem;
+    background-color: var(--green);
+    color: var(--white);
+    border-radius: 100%;
+    text-decoration: unset;
+    flex: 0 0 auto;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.articles-form {
+  display: grid;
+  grid-template-columns: 30rem 30rem 20rem;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-top: 4rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav class="d-flex justify-items-center justify-content-between">
-        <div class="d-flex justify-content-between flex-fill d-sm-none">
+        <!--<div class="d-flex justify-content-between flex-fill d-sm-none">
             <ul class="pagination">
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
@@ -24,10 +24,10 @@
                     </li>
                 @endif
             </ul>
-        </div>
+        </div> -->
 
         <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
-            <div>
+            {{-- <div>
                 <p class="small text-muted">
                     {!! __('Showing') !!}
                     <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
@@ -37,7 +37,7 @@
                     <span class="fw-semibold">{{ $paginator->total() }}</span>
                     {!! __('results') !!}
                 </p>
-            </div>
+            </div> --}}
 
             <div>
                 <ul class="pagination">

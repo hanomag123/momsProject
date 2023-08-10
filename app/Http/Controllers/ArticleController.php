@@ -2,38 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App;
-use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleTranslation;
-use App\Models\Language;
-use Illuminate\Http\Request;
+use App\Filters\ArticleFilter;
 
 class ArticleController extends Controller
 {
-    public function index () {
-      
+  public function index(ArticleFilter $filter)
+  {
+    $paginate = Article::orderBy('date', 'desc')->filter($filter)->paginate(8);
+    $articles = [];
+    $minYear = explode('-', Article::min('date'));
 
-      $articles=[];
-      $images=[];
-      foreach(Article::paginate(2) as $article) {
-        $images[] = $article->image;
-        $articles[] = Article::local($article)->first();
-      }
-
-      $paginate = Article::paginate(2);
-
-      return view('articles', compact('articles', 'images', 'paginate'));
-
-    } 
-
-    public function show($slug) {
-      $article = ArticleTranslation::where('slug', $slug)->first();
-
-      return view('article', compact('article'));
+    foreach ($paginate as $article) {
+      $elem = Article::local($article)->first();
+      $elem->image = $article->image;
+      $elem->date = $article->date;
+      $articles[] = $elem;
     }
 
+    return view('articles', compact('articles', 'paginate', 'minYear'));
+  }
 
-    
+  public function show($slug)
+  {
+    $article = ArticleTranslation::where('slug', $slug)->first();
+
+    return view('article', compact('article'));
+  }
 }

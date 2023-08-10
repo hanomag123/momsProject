@@ -25,17 +25,17 @@ class ArticleSeeder extends Seeder
     //   ]
     // );
 
-    $urls = [
-      'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13283',
-      'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13263',
-      'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13243',
-      'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13233',
-      'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13293',
-    ];
+    // $urls = [
+    //   'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13283',
+    //   'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13263',
+    //   'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13243',
+    //   'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13233',
+    //   'http://ddu10.minsk.edu.by/ru/main.aspx?guid=13293',
+    // ];
 
-    foreach($urls as $url) {
-      Artisan::call('app:parse-site', ['url' => $url]);
-    };
+    // foreach($urls as $url) {
+    //   Artisan::call('app:parse-site', ['url' => $url]);
+    // };
 
 
   }

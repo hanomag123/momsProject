@@ -6,20 +6,46 @@
     <section class="container">
 
         <ul class="breadcrumbs">
-            <li><a href="#">Главная</a></li>
+            <li><a href="{{route('main')}}">Главная</a></li>
             <li><a href="#">Новости</a></li>
         </ul>
 
         <h1 class="h2 title-margin">Новости</h1>
 
-        <ul class="news-list page-margin-container">
+        <form action="{{route('articles')}}" class="articles-form" id="filter-form">
 
-            @foreach ($articles as $key => $article)
+            <div class="custom-select w-full">
+                <select name="year">
+                    <option value="">@lang('messages.year')</option>
+                    @foreach (range(date('Y'), $minYear[0]) as $year)
+                        <option value="{{ $year }}" @isset($_GET['year']) @if((int)$_GET['year'] === $year) selected @endif @endisset>{{ $year }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="custom-select w-full">
+                <select name="month">
+                    <option value="">@lang('messages.month')</option>
+                    @foreach (__('messages.monthes') as $key => $month)
+                        <option value="{{ $key + 1 }}" @isset($_GET['month']) @if((int)$_GET['month'] === $key + 1) selected @endif @endisset>{{ $month }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <button class="page-button" type="submit">
+              Поиск
+            </button>
+        </form>
+
+        <ul class="news-list page-margin-container">
+            @if (count($articles) > 0)
+              @foreach ($articles as $key => $article)
                 @isset($article, $article->slug)
                     <li class="news-item">
                         <a href="{{ route('article', $article->slug) }}">
-                            @isset ($images[$key])
-                                <div class="img-cover rounded news-img"><img src="{{ $images[$key] }}" alt="news"></div>
+                            <div class="h5">{{ $article->date }}</div>
+
+                            @isset($article->image)
+                                <div class="img-cover rounded news-img"><img src="{{ $article->image }}" alt="news"></div>
                             @endisset
                             <div class="news-title h4">{{ $article->title }}</div>
                             <div class="news-desc text-2">{!! $article->content !!}</div>
@@ -27,18 +53,14 @@
                     </li>
                 @endisset
             @endforeach
-
-            <li class="news-item --wider">
-                <a href="#">
-                    <span class="img-cover rounded news-img"><img src="./assets/images/news/news-1.jpg"
-                            alt="news"></span>
-                    <span class="news-title h4">Колледж стал лидером в области цифровых технологий</span>
-                    <span class="news-desc text-2">Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies
-                        bibendum dolor
-                        suscipit. </span>
-                </a>
-            </li>
+            @else 
+                    <h3>Ничего не найдено...</h3>
+            @endif
         </ul>
-        {{$paginate->links()}}
+
+        <div>
+            {{ $paginate->withQueryString()->links('pagination.custom') }}
+        </div>
+
     </section>
 @endsection

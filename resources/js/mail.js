@@ -45,24 +45,24 @@ function enableScroll() {
 }
 
 const feedback = document.getElementById('feedback');
+const mail = document.querySelectorAll('.mail-form')
 
-for (let form of document.forms) {
-  form.addEventListener('submit', function () {
-    event.preventDefault();
-    axios.post('/form-request', new FormData(this))
-      .then(function (response) {
-        // handle success
-        console.log(response);
-        if (feedback) {
-          modalHandler.apply(feedback)
-        }
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error.response)
-      })
-      .finally(function () {
-        // always executed
-      });
-  })
+if (mail.length) {
+  for (let form of mail) {
+    form.addEventListener('submit', function () {
+      event.preventDefault();
+      axios.post('/form-request', new FormData(this))
+        .then(function (response) {
+          // handle success
+          console.log(response);
+          if (feedback) {
+            modalHandler.apply(feedback)
+          }
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error.response)
+        })
+    })
+  }
 }

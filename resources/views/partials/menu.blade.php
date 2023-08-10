@@ -7,7 +7,6 @@
             <li><a href="https://yandex.by/maps/-/CPW0Vjq" target="_blank" class="text-3 text-green">@lang('messages.address')</a>
             </li>
             <li><a href="mailto:ddu10@minskedu.gov.by" class="text-3 text-green">ddu10@minskedu.gov.by</a></li>
-            <li><a href="#" class="text-3 text-green">карта сайта</a></li>
         </ul>
     </div>
 

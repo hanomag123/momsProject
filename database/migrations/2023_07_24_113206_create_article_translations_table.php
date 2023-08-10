@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('article_id')->constrained()->onDelete('cascade');
             $table->string('title')->nullable();
             $table->longText('content')->nullable();
-            $table->string('date')->nullable();
             $table->foreignId('language_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('slug', 120)->unique()->nullable();
             $table->timestamps();

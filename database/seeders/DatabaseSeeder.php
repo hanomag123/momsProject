@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Article;
+use App\Models\ArticleTranslation;
+use App\Models\Language;
 use App\Models\Role;
 use App\Models\User;
 use Hash;
@@ -24,9 +27,14 @@ class DatabaseSeeder extends Seeder
           LanguageSeeder::class,
           ImageSeeder::class,
           MainBlockSeeder::class,
-          ArticleSeeder::class,
-          ArticleTranslationSeeder::class,
+          // ArticleSeeder::class,
+          // ArticleTranslationSeeder::class,
         ]);
+
+        Article::factory(100)
+        ->has(ArticleTranslation::factory()
+        ->count(Language::all()->count()))
+        ->create();
 
         User::create([
           'email' => 'manager@manager.com',

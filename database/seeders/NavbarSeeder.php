@@ -15,8 +15,12 @@ class NavbarSeeder extends Seeder
   {
     $links = [
       [
-        'name' => 'Одно окно',
-        'route' => 'oneWindow'
+        'name' => 'Главная',
+        'route' => 'main'
+      ],
+      [
+        'name' => 'Новости',
+        'route' => 'articles'
       ],
     ];
 

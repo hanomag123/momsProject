@@ -17,7 +17,8 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'image' => '/images/news/news-1.jpg',
+            'date' => $this->faker->dateTimeBetween('-10 years', 'now'),
         ];
     }
 }
