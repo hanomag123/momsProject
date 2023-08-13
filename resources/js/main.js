@@ -1,3 +1,5 @@
+import Swiper from 'swiper';
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const xl = matchMedia('(max-width: 1024px)');

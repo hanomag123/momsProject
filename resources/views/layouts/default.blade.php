@@ -53,7 +53,7 @@
     </div>
 
     <!-- JS -->
-    @vite(['resources/js/main.js', 'resources/js/vendor.js', 'resources/js/mail.js'])
+    @vite(['resources/js/main.js', 'resources/js/mail.js'])
 
     <script>
         window.onload = function() {

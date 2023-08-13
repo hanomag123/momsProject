@@ -8,8 +8,9 @@ export default defineConfig({
             input: [
                 'resources/scss/style.scss',
                 'resources/js/main.js',
-                'resources/js/vendor.js',
                 'resources/js/mail.js',
+                'resources/css/app.css', 
+                'resources/js/app.js',
             ],
             refresh: true,
         }),
