@@ -23,6 +23,8 @@ Route::get('/setLocale/{locale}', [Helper::class, 'setLocale'])->name('setLocale
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('article');
 
+Route::get('/events', [ArticleController::class, 'vueIndex'])->name('events');
+
 Route::post('/form-request', [FormController::class, 'index']);
 
 Route::get('/map', function () {

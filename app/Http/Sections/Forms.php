@@ -46,7 +46,7 @@ class Forms extends Section implements Initializable
      */
     public function initialize()
     {
-        $this->addToNavigation()->setPriority(100)->setIcon('fa fa-envelope');
+        $this->addToNavigation(0, $this->model::count())->setPriority(100)->setIcon('fa fa-envelope');
     }
 
     /**

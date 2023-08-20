@@ -66,21 +66,21 @@ use SleepingOwl\Admin\Navigation\Page;
 // ]);
 
 AdminNavigation::setFromArray([
-  [
-    'title' => 'Страницы',
-    'icon' => 'fa fa-file',
-    'pages' => [
+  // [
+  //   'title' => 'Страницы',
+  //   'icon' => 'fa fa-file',
+  //   'pages' => [
 
-      [
-        'title' => 'Главная',
-        'pages' => [
-          (new Page(MainBlock::class))
-            ->setTitle('Главный блок')
-            ->setPriority(0),
-        ]
-      ],
-    ]
-  ],
+  //     [
+  //       'title' => 'Главная',
+  //       'pages' => [
+  //         (new Page(MainBlock::class))
+  //           ->setTitle('Главный блок')
+  //           ->setPriority(0),
+  //       ]
+  //     ],
+  //   ]
+  // ],
   [
     'title' => 'Дополнительно',
     'icon'  => 'fas fa-info-circle',
@@ -96,12 +96,12 @@ AdminNavigation::setFromArray([
         ->setPriority(0),
     ]
   ],
-  // [
-  //   'title' => 'Панель',
-  //   'icon'  => 'fas fa-tachometer-alt',
-  //   'url'   => route('admin.dashboard'),
-  //   'priority' => '0',
-  // ],
+  [
+    'title' => 'Панель',
+    'icon'  => 'fas fa-tachometer-alt',
+    'url'   => route('admin.dashboard'),
+    'priority' => '0',
+  ],
 ]);
 
 

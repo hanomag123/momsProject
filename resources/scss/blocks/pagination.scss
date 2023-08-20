@@ -38,6 +38,13 @@
   justify-content: flex-end;
   gap: 2rem;
   margin-top: 4rem;
+  &.--events {
+    grid-template-columns: repeat(2, 38rem);
+    @include breakpoint($xl-bp) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
   @include breakpoint($xl-bp) {
     display: flex;
     flex-direction: column;

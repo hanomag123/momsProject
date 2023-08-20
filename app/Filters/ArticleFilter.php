@@ -15,4 +15,3 @@ class ArticleFilter extends QueryFilter {
     });
   }
 }
-?>

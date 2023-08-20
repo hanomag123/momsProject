@@ -7,6 +7,7 @@ use App\Models\ArticleTranslation;
 use App\Models\Form;
 use App\Models\Language;
 use App\Models\MainBlock;
+use App\Models\Page;
 use App\Models\User;
 use SleepingOwl\Admin\Contracts\Widgets\WidgetsRegistryInterface;
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
@@ -24,9 +25,11 @@ class AdminSectionsServiceProvider extends ServiceProvider
     Article::class => 'App\Http\Sections\Articles',
     ArticleTranslation::class => 'App\Http\Sections\ArticleTranslations',
     Form::class => 'App\Http\Sections\Forms',
+    Page::class => 'App\Http\Sections\Pages',
   ];
 
   protected $widgets = [
+    \Admin\Widgets\DashboardMap::class,
     \Admin\Widgets\NavigationUserBlock::class,
   ];
 

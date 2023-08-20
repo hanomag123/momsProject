@@ -17,6 +17,17 @@ class AdminAuthenticate
    */
   public function handle(Request $request, Closure $next, $guard = null): Response
   {
+    $auth = Auth::guard($guard);
+
+    if (Auth::guard($guard)->guest()) {
+
+      if ($request->ajax() || $request->wantsJson()) {
+        return response('Unauthorized.', 403);
+      } else {
+        return redirect()->guest('login');
+      }
+    }
+
     if (empty(auth()->user()->role)) {
       abort(403, 'Access dinied');
     } else {

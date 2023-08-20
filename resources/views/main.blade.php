@@ -3,7 +3,6 @@
 @section('title', __('messages.name.end'))
 
 @section('content')
-
     @include('main.mainBlock')
 
     <section class="container page-margin">
@@ -27,60 +26,6 @@
                 <div>Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies bibendum dolor suscipit. Enim
                     facilisis
                     condimentum nisi maecenas viverra pellentesque.</div>
-            </li>
-        </ul>
-    </section>
-
-    <section class="container page-margin">
-        <h2 class="h2">Наши специальности</h2>
-
-        <ul class="specialties-list page-margin-container">
-            <li class="specialties-item">
-                <div class="specialties-top bg-green">
-                    <h3 class="specialties-top__title h3 text-white">Экономика и бухгалтерский учёт</h3>
-                </div>
-                <ul class="specialties-sublist">
-                    <li class="specialties-subitem">
-                        <a href="#">
-                            <span class="specialties-subtitle h4">на базе среднего (полного) общего образования</span>
-                            <span class="Form-training text-2">заочно</span>
-                            <span class="training-time text-button text-green">3 года 10 месяцев</span>
-                        </a>
-                    </li>
-
-                    <li class="specialties-subitem">
-                        <a href="#">
-                            <span class="specialties-subtitle h4">на базе основного общего образования</span>
-                            <span class="Form-training text-2">заочно</span>
-                            <span class="training-time text-button text-green">4 года 4 месяца</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="specialties-item">
-                <div class="specialties-top bg-red">
-                    <h3 class="specialties-top__title h3 text-white">Дошкольное образование</h3>
-                </div>
-                <ul class="specialties-sublist">
-                    <li class="specialties-subitem">
-                        <a href="#">
-                            <span class="specialties-subtitle h4">на базе среднего (полного) общего образования</span>
-                            <span class="Form-training text-2">заочно</span>
-                            <span class="training-time text-button text-red">2 года 10 месяцев</span>
-                        </a>
-                    </li>
-
-                    <li class="specialties-subitem">
-                        <a href="#">
-                            <span class="specialties-subtitle h4">на базе основного общего образования</span>
-                            <span class="Form-training text-2">заочно</span>
-                            <span class="training-time text-button text-red">4 года 4 месяца</span>
-                        </a>
-                    </li>
-
-                </ul>
             </li>
         </ul>
     </section>
@@ -121,7 +66,7 @@
         <div class="news-top container">
             <h2 class="h2">Новости</h2>
 
-            <a href="#" class="news-button">
+            <a href="{{route('articles')}}" class="news-button">
                 <span class="text-button text-green">все новости</span>
                 <span class="arrow-button"><svg>
                         <use href='#arrowR'></use>

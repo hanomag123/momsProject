@@ -19,6 +19,10 @@ class NavbarSeeder extends Seeder
         'route' => 'main'
       ],
       [
+        'name' => 'События',
+        'route' => 'events'
+      ],
+      [
         'name' => 'Новости',
         'route' => 'articles'
       ],

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
           LanguageSeeder::class,
           ImageSeeder::class,
           MainBlockSeeder::class,
+          PageSeeder::class,
           // ArticleSeeder::class,
           // ArticleTranslationSeeder::class,
         ]);

@@ -5,20 +5,24 @@
 @section('content')
     <section class="container">
 
-        <ul class="breadcrumbs">
-            <li><a href="{{route('main')}}">Главная</a></li>
-            <li><a href="#">Новости</a></li>
-        </ul>
+      <x-breadcrumbs cur="Новости" :pages="[
+          // [
+          //   'href' => '#',
+          //   'text' => 'Components',
+          // ]
+      ]"/>
 
         <h1 class="h2 title-margin">Новости</h1>
 
-        <form action="{{route('articles')}}" class="articles-form" id="filter-form">
+        <form action="{{ route('articles') }}" class="articles-form" id="filter-form">
 
             <div class="custom-select w-full">
                 <select name="year">
                     <option value="">@lang('messages.year')</option>
                     @foreach (range(date('Y'), $minYear[0]) as $year)
-                        <option value="{{ $year }}" @isset($_GET['year']) @if((int)$_GET['year'] === $year) selected @endif @endisset>{{ $year }}</option>
+                        <option value="{{ $year }}"
+                            @isset($_GET['year']) @if ((int) $_GET['year'] === $year) selected @endif @endisset>
+                            {{ $year }}</option>
                     @endforeach
                 </select>
             </div>
@@ -26,35 +30,37 @@
                 <select name="month">
                     <option value="">@lang('messages.month')</option>
                     @foreach (__('messages.monthes') as $key => $month)
-                        <option value="{{ $key + 1 }}" @isset($_GET['month']) @if((int)$_GET['month'] === $key + 1) selected @endif @endisset>{{ $month }}</option>
+                        <option value="{{ $key + 1 }}"
+                            @isset($_GET['month']) @if ((int) $_GET['month'] === $key + 1) selected @endif @endisset>
+                            {{ $month }}</option>
                     @endforeach
                 </select>
             </div>
 
             <button class="page-button" type="submit">
-              Поиск
+                Поиск
             </button>
         </form>
 
         <ul class="news-list page-margin-container">
             @if (count($articles) > 0)
-              @foreach ($articles as $key => $article)
-                @isset($article, $article->slug)
-                    <li class="news-item">
-                        <a href="{{ route('article', $article->slug) }}">
-                            <div class="h5">{{ $article->date }}</div>
+                @foreach ($articles as $key => $article)
+                    @isset($article, $article->slug)
+                        <li class="news-item">
+                            <a href="{{ route('article', $article->slug) }}">
+                                <div class="h5">{{ $article->date }}</div>
 
-                            @isset($article->image)
-                                <div class="img-cover rounded news-img"><img src="{{ $article->image }}" alt="news"></div>
-                            @endisset
-                            <div class="news-title h4">{{ $article->title }}</div>
-                            <div class="news-desc text-2">{!! $article->content !!}</div>
-                        </a>
-                    </li>
-                @endisset
-            @endforeach
-            @else 
-                    <h3>Ничего не найдено...</h3>
+                                @isset($article->image)
+                                    <div class="img-cover rounded news-img"><img src="{{ $article->image }}" alt="news"></div>
+                                @endisset
+                                <div class="news-title h4">{{ $article->title }}</div>
+                                <div class="news-desc text-2">{!! $article->content !!}</div>
+                            </a>
+                        </li>
+                    @endisset
+                @endforeach
+            @else
+                <h3>Ничего не найдено...</h3>
             @endif
         </ul>
 
