@@ -110,17 +110,16 @@ class Preferences extends Section implements Initializable
   {
     $form = AdminForm::card()->addBody([
       AdminFormElement::columns()->addColumn([
-        AdminFormElement::text('title', 'Name')
+        AdminFormElement::text('name', 'Name')
           ->required(),
-        AdminFormElement::wysiwyg('list', 'Текст статьи')->setEditor('ckeditor5'),
+        AdminFormElement::wysiwyg('description', 'Текст статьи'),
         AdminFormElement::html('<hr>'),
         AdminFormElement::datetime('created_at')
           ->setVisible(true)
           ->setReadonly(false),
-        AdminFormElement::html('last AdminFormElement without comma')
+
       ], 'col-xs-12 col-sm-6 col-md-4 col-lg-4')->addColumn([
-        AdminFormElement::text('id', 'ID')->setReadonly(true),
-        AdminFormElement::html('last AdminFormElement without comma')
+        AdminFormElement::html("<iframe style='height: 100vh; width: 100%' src=". route('main') . "></iframe>")
       ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
     ]);
 
