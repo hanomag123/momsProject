@@ -55,7 +55,7 @@ class ArticleTranslations extends Section implements Initializable
     $form = [];
     $form = [
       AdminFormElement::text('title', 'Заголовок статьи'),
-      AdminFormElement::wysiwyg('content', 'Текст статьи')->setId('content' . $id)->setEditor('ckeditor5')
+      AdminFormElement::wysiwyg('content', 'Текст статьи')->setId('content' . $id)->setEditor('ckeditor4')
         ->setParameters([
           // 'toolbar' => [ 'heading', '|', 'italic','bold', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'sourceEditing', 'image' ],
           'heading' => [

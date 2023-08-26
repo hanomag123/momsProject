@@ -38,5 +38,16 @@ class ArticleSeeder extends Seeder
     // };
 
 
+    $articles = Article::factory(100)
+    ->create();
+
+    foreach($articles as $article) {
+      $article = $article->toArray();
+      unset($article['id']);
+      $article['locale_id'] = 2;
+      $article['title'] = str_replace('рус', 'бел', $article['title'] );
+      Article::create($article);
+      $article = [];
+    }
   }
 }

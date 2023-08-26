@@ -17,14 +17,14 @@ class ArticleTranslationSeeder extends Seeder
         // ArticleTranslation::create([
         //   'title' => 'Привет',
         //   'content' => 'Текст 1',
-        //   'language_id' => 1,
+        //   'locale_id' => 1,
         //   'article_id' => 1,
         // ]);
 
         // ArticleTranslation::create([
         //   'title' => 'Прывет',
         //   'content' => 'Текст 2',
-        //   'language_id' => 2,
+        //   'locale_id' => 2,
         //   'article_id' => 1,
         // ]);
     }

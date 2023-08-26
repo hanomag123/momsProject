@@ -4,6 +4,11 @@
       <input type="text" @input="callDebounce" v-model="year" class="input form-container__input">
       <div class="input-placeholder">Год статьи</div>
     </div>
+
+    <div class="input-wrapper">
+      <input type="text" @input="callDebounce" v-model="title" class="input form-container__input">
+      <div class="input-placeholder">Название статьи</div>
+    </div>
   </form>
 
   <div v-if="this.events.length > 1">
@@ -39,6 +44,7 @@ export default {
       events: [],
       year: '',
       page: '',
+      title: '',
       pagination: [],
     }
   },
@@ -59,13 +65,12 @@ export default {
           url: '/api/events',
         })
         this.events = events.data.items;
-        this.pagination = events.data.paginate
+        this.pagination = events.data.paginate;
       } catch (error) {
         console.log(error)
       }
     },
     async filter(page = 1) {
-      console.log('hello')
       try {
         const events = await axios({
           method: 'get',
@@ -73,6 +78,7 @@ export default {
           params: {
             year: this.year,
             page: page,
+            title: this.title,
           }
         })
         this.events = events.data.items;

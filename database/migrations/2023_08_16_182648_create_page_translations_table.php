@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('page_translations', function (Blueprint $table) {
       $table->id();
       $table->foreignId('page_id')->constrained()->onDelete('cascade');
-      $table->foreignId('language_id')->nullable()->constrained()->onDelete('cascade');
+      $table->foreignId('locale_id')->nullable()->constrained()->onDelete('cascade');
       $table->string('title')->nullable();
       $table->text('description')->nullable();
       $table->timestamps();

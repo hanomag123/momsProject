@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Language;
+use App\Models\Locale;
 use App\Models\MainBlock;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,7 +14,7 @@ class MainBlockSeeder extends Seeder
      */
     public function run(): void
     {
-      $languages = Language::pluck('id');
+      $languages = Locale::pluck('id');
       $mainBlocks = [
         [
           'title' => 'Детский сад №10 г.Минска',
@@ -31,7 +31,7 @@ class MainBlockSeeder extends Seeder
           'title' => $value['title'],
           'intro' => $value['intro'],
           'ref_id' => 1,
-          'language_id' => $languages[$key],
+          'locale_id' => $languages[$key],
         ]);
       };
 

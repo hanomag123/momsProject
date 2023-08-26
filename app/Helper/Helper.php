@@ -1,13 +1,13 @@
 <?php
 namespace App\Helper;
 
-use App\Models\Language;
+use App\Models\Locale;
 
 class Helper
 {
   public static function setLocale($locale)
   {
-    if (!in_array($locale, Language::pluck('name')->toArray())) {
+    if (!in_array($locale, Locale::pluck('name')->toArray())) {
       abort(404);
     }
     session(['user_locale' => $locale]);

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\Language;
+use App\Models\Locale;
 use App\Models\MainBlock;
+use App\Models\Preference;
 use Illuminate\Support\Facades\App;
 
 class MainController extends Controller
@@ -13,13 +14,14 @@ class MainController extends Controller
   public function index()
   {
 
-    $local = Language::where('name', App::getLocale())->first();
+    $local = Locale::where('name', App::getLocale())->first();
+    $preferences = Preference::all();
 
     if (isset($local)) {
 
-      $mainBlock = MainBlock::where('language_id', $local['id'])->first();
+      $mainBlock = MainBlock::where('locale_id', $local['id'])->first();
 
-      return view('main', compact('mainBlock'));
+      return view('main', compact('mainBlock','preferences'));
 
     } else {
       Helper::setLocale(config('app.fallback_locale'));

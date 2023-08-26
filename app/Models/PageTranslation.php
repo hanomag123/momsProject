@@ -13,7 +13,7 @@ class PageTranslation extends Model
     protected $guarded = [];
 
     public function language(): BelongsTo {
-      return $this->belongsTo(Language::class);
+      return $this->belongsTo(Locale::class);
     }
 
     public function page():BelongsTo { 

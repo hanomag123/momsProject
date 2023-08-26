@@ -11,16 +11,18 @@ class ArticleController extends Controller
 {
   public function index(ArticleFilter $filter)
   {
-    $paginate = Article::orderBy('date', 'desc')->filter($filter)->paginate(8);
+    $paginate = Article::local()->orderBy('date', 'desc')->filter($filter)->paginate(8);
     $articles = [];
     $minYear = explode('-', Article::min('date'));
 
-    foreach ($paginate as $article) {
-      $elem = Article::local($article)->first();
-      $elem->image = $article->image;
-      $elem->date = $article->date;
-      $articles[] = $elem;
-    }
+    // foreach ($paginate as $article) {
+    //   $elem = Article::local($article)->first();
+    //   $elem->image = $article->image;
+    //   $elem->date = $article->date;
+    //   $articles[] = $elem;
+    // }
+
+    $articles = $paginate;
 
     return view('articles', compact('articles', 'paginate', 'minYear'));
   }
@@ -33,7 +35,7 @@ class ArticleController extends Controller
   }
 
   public function events(ArticleFilter $filter) {
-    $paginate = Article::orderBy('date', 'desc')->with('articleTranslations')->filter($filter)->paginate(8);
+    $paginate = Article::local()->orderBy('date', 'desc')->filter($filter)->paginate(8);
     $articles = [];
     $minYear = explode('-', Article::min('date'));
 
@@ -48,7 +50,7 @@ class ArticleController extends Controller
   }
 
 
-  public function vueIndex(ArticleFilter $filter)
+  public function vueIndex()
   {
     return view('articlesVue');
   }

@@ -6,7 +6,7 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use AdminSection;
-use App\Models\Language;
+use App\Models\Locale;
 use App\Models\MainBlock;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -48,10 +48,10 @@ class MainBlocks extends Section implements Initializable
   {
 
     $tabs = AdminDisplay::tabbed();
-    $languages = Language::all();
+    $languages = Locale::all();
 
     foreach($languages as $language) {
-      $item = MainBlock::firstOrCreate(['language_id' => $language->id]);
+      $item = MainBlock::firstOrCreate(['locale_id' => $language->id]);
       AdminSection::getModel(MainBlock::class)->setModelValue($item);
       $section = AdminSection::getModel(MainBlock::class);
       $forms[] = $section->fireEdit($item->id);

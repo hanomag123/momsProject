@@ -77,7 +77,7 @@ class ParseSite extends Command
         'image' => '',
       ]
     );
-    ArticleTranslation::create([...$arr, 'article_id' => $article->id, 'language_id' => 1]);
+    ArticleTranslation::create([...$arr, 'article_id' => $article->id, 'locale_id' => 1]);
   }
 
   public function get_html_data($url, $file_url)

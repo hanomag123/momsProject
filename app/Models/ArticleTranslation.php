@@ -15,7 +15,7 @@ class ArticleTranslation extends Model
   use HasFactory;
   use Sluggable;
 
-  protected $fillable = ['article_id', 'language_id'];
+  protected $fillable = ['article_id', 'locale_id'];
 
   public function sluggable(): array
   {
@@ -26,8 +26,8 @@ class ArticleTranslation extends Model
     ];
   }
 
-  public function article ():BelongsTo { 
-    return $this->belongsTo(Article::class);
-  }
+  // public function article ():BelongsTo { 
+  //   return $this->belongsTo(Article::class);
+  // }
 
 }

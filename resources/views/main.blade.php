@@ -6,9 +6,15 @@
     @include('main.mainBlock')
 
     <section class="container page-margin">
-        <h2 class="h2">Наши преимущества</h2>
+        <h2 class="h2">Преимущества</h2>
 
         <ul class="advantages-list page-margin-container">
+            @foreach ($preferences as $item)
+                <li class="advantages-item">
+                    <h3 class="text-button mob-brblock">{{$item->name}}</h3>
+                    <div>{{$item->description}}</div>
+                </li>
+            @endforeach
             <li class="advantages-item">
                 <h3 class="text-button mob-brblock">Возможность<br> дистанционного обучения</h3>
                 <div>Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies bibendum dolor suscipit. Enim
@@ -66,7 +72,7 @@
         <div class="news-top container">
             <h2 class="h2">Новости</h2>
 
-            <a href="{{route('articles')}}" class="news-button">
+            <a href="{{ route('articles') }}" class="news-button">
                 <span class="text-button text-green">все новости</span>
                 <span class="arrow-button"><svg>
                         <use href='#arrowR'></use>
@@ -87,8 +93,7 @@
                 </li>
                 <li class="news-item swiper-slide">
                     <a href="#">
-                        <span class="img-cover rounded news-img"><img src="/images/news/news-2.jpg"
-                                alt="news"></span>
+                        <span class="img-cover rounded news-img"><img src="/images/news/news-2.jpg" alt="news"></span>
                         <span class="news-title h4">Колледж запускает новые программы обучения</span>
                         <span class="news-desc text-2">Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies
                             bibendum dolor
@@ -97,8 +102,7 @@
                 </li>
                 <li class="news-item swiper-slide">
                     <a href="#">
-                        <span class="img-cover rounded news-img"><img src="/images/news/news-3.jpg"
-                                alt="news"></span>
+                        <span class="img-cover rounded news-img"><img src="/images/news/news-3.jpg" alt="news"></span>
                         <span class="news-title h4">Инновационные методы обучения для повышения качества образования</span>
                         <span class="news-desc text-2">Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies
                             bibendum dolor
@@ -107,8 +111,7 @@
                 </li>
                 <li class="news-item swiper-slide">
                     <a href="#">
-                        <span class="img-cover rounded news-img"><img src="/images/news/news-4.jpg"
-                                alt="news"></span>
+                        <span class="img-cover rounded news-img"><img src="/images/news/news-4.jpg" alt="news"></span>
                         <span class="news-title h4">Наши студенты получили престижные награды на конкурсе</span>
                         <span class="news-desc text-2">Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies
                             bibendum dolor

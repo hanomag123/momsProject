@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Language;
+use App\Models\Locale;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,11 +18,11 @@ class ArticleTranslationFactory extends Factory
      */
     public function definition(): array
     {
-      $languages = Language::pluck('id');
+      $languages = Locale::pluck('id');
         return [
           'title' => (bool) $this->numb ? 'бел' . $this->faker->title() : 'рус' . $this->faker->title ,
           'content' => $this->faker->sentence(10),
-          'language_id' => $languages[$this->numb++],
+          'locale_id' => $languages[$this->numb++],
         ];
     }
 }

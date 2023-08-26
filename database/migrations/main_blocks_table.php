@@ -17,7 +17,7 @@ return new class extends Migration
       $table->string('title', 40)->nullable();
       $table->string('intro', 700)->nullable();
       $table->unsignedBigInteger('ref_id')->nullable();
-      $table->foreignId('language_id')->default(1)->constrained()->onDelete('cascade');
+      $table->foreignId('locale_id')->default(1)->constrained()->onDelete('cascade');
       $table->foreignId('image_id')->default(1)->constrained();
     });
     

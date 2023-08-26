@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Sections\MainBlocks;
-use App\Models\Language;
+use App\Models\Locale;
 use App\Models\MainBlock;
+use App\Models\Preference;
 use App\Models\User;
 use SleepingOwl\Admin\Model\ModelConfiguration;
 use SleepingOwl\Admin\Navigation\Page;
@@ -66,21 +67,23 @@ use SleepingOwl\Admin\Navigation\Page;
 // ]);
 
 AdminNavigation::setFromArray([
-  // [
-  //   'title' => 'Страницы',
-  //   'icon' => 'fa fa-file',
-  //   'pages' => [
+  [
 
-  //     [
-  //       'title' => 'Главная',
-  //       'pages' => [
-  //         (new Page(MainBlock::class))
-  //           ->setTitle('Главный блок')
-  //           ->setPriority(0),
-  //       ]
-  //     ],
-  //   ]
-  // ],
+
+
+    'title' => 'Главная',
+    'pages' => [
+      (new Page(MainBlock::class))
+        ->setTitle('Главный блок')
+        ->setPriority(0),
+      (new Page(Preference::class))
+        ->setTitle('Преимущества')
+        ->setPriority(0),
+    ]
+
+
+
+  ],
   [
     'title' => 'Дополнительно',
     'icon'  => 'fas fa-info-circle',
@@ -91,7 +94,7 @@ AdminNavigation::setFromArray([
         'url'   => route('admin.information'),
       ],
 
-      (new Page(Language::class))
+      (new Page(Locale::class))
         ->setTitle('Языки')
         ->setPriority(0),
     ]

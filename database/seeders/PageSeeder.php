@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Language;
+use App\Models\Locale;
 use App\Models\Page;
 use App\Models\PageTranslation;
 use Illuminate\Database\Seeder;
@@ -20,7 +20,7 @@ class PageSeeder extends Seeder
           'meta_title' => 'Главная Самого лучшего сайта',
         ],
       ];
-      $languages = Language::pluck('id');
+      $languages = Locale::pluck('id');
       $mainBlocks = [
         [
           'title' => 'Детский сад №10 г.Минска',
@@ -46,7 +46,7 @@ class PageSeeder extends Seeder
           'title' => $value['title'],
           'description' => $value['description'],
           'page_id' => 1,
-          'language_id' => $languages[$key],
+          'locale_id' => $languages[$key],
         ]);
       };
     }

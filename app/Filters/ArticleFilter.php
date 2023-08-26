@@ -14,4 +14,10 @@ class ArticleFilter extends QueryFilter {
       $query->whereMonth('date', $month);
     });
   }
+
+  public function title($title = null) {
+    return $this->builder->when($title, function($query) use($title) {
+      $query->where('title', 'like', "%$title%");
+    });
+  }
 }

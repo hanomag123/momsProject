@@ -5,6 +5,7 @@ namespace App\Models;
 use App;
 use App\Filters\QueryFilter;
 use App\Helper\Helper;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,23 +14,34 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Article extends Model
 {
   use HasFactory;
+  use Sluggable;
 
   public function articleTranslations(): HasMany
   {
     return $this->hasMany(ArticleTranslation::class);
   }
 
-
-  public function scopeLocal($query, $article)
+  
+  public function sluggable(): array
   {
-    $local = Language::where('name', App::getLocale())->first();
+    return [
+      'slug' => [
+        'source' => ['title']
+      ]
+    ];
+  }
+
+
+  public function scopeLocal($query)
+  {
+    $local = Locale::where('name', App::getLocale())->first();
 
     if (isset($local)) {
-      return $article->articleTranslations->where('language_id', $local['id']);
+      return $query->where('locale_id', $local['id']);
     } else {
       Helper::setLocale(config('app.fallback_locale'));
-      $local = Language::where('name', App::getLocale())->first();
-      return $article->articleTranslations->where('language_id', $local['id']);
+      $local = Locale::where('name', App::getLocale())->first();
+      return $query->where('locale_id', $local['id']);
     }
   }
 

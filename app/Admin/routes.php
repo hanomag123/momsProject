@@ -7,6 +7,6 @@
 // }])->middleware(['admin', 'verified']);
 
 Route::get('information', ['as' => 'admin.information', function () {
-	$content = 'Define your information here.';
-	return AdminSection::view($content, 'Information');
+	$content = 'Любая ваша информация.';
+	return AdminSection::view($content, 'Информация');
 }]);

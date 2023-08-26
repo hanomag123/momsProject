@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->date('date')->nullable();
+            $table->string('title')->nullable();
+            $table->longText('content')->nullable();
+            $table->foreignId('locale_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('slug', 120)->nullable();
             $table->timestamps();
         });
     }

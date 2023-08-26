@@ -9,7 +9,7 @@ use AdminFormElement;
 use AdminColumnFilter;
 use AdminSection;
 use App\Models\ArticleTranslation;
-use App\Models\Language;
+use App\Models\Locale;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -62,7 +62,9 @@ class Articles extends Section implements Initializable
     $columns = [
       AdminColumn::text('id', '#')->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
       AdminColumn::image('image', 'Картинка'),
-      AdminColumn::lists('articleTranslations.title', 'Названия'),
+      AdminColumn::text('locale_id', 'Язык')->setWidth('100px'),
+      AdminColumn::text('slug', 'Псевдоним'),
+      AdminColumn::text('title', 'Название'),
       AdminColumn::text('date', 'Дата')->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
       AdminColumn::text('created_at', 'Created / updated', 'updated_at')
         ->setWidth('160px')
@@ -75,11 +77,13 @@ class Articles extends Section implements Initializable
 
     $display = AdminDisplay::datatables()
       ->setName('firstdatatables')
-      ->with('articleTranslations')
       ->setOrder([[0, 'asc']])
       ->paginate(25)
       ->setColumns($columns)
-      ->setHtmlAttribute('class', 'table-primary table-hover');
+      ->setHtmlAttribute('class', 'table-primary table-hover')
+      ->setApply(function ($query) {
+        return $query->orderBy('date', 'asc');
+      });
 
     $display->setColumnFilters([
       AdminColumnFilter::range()->setFrom(
@@ -122,16 +126,16 @@ class Articles extends Section implements Initializable
       $tabs[] = AdminDisplay::tab($form)->setLabel("Основные сведения");
 
       if (!is_null($id)) {
-        $languages = Language::all();
+        $languages = Locale::all();
         foreach ($languages as $language) {
-          $item = ArticleTranslation::firstOrCreate([
-            'article_id' => $id,
-            'language_id' => $language->id,
-          ]);
-          AdminSection::getModel(ArticleTranslation::class)->setModelValue($item);
+          // $item = ArticleTranslation::firstOrCreate([
+          //   'article_id' => $id,
+          //   'locale_id' => $language->id,
+          // ]);
+          // AdminSection::getModel(ArticleTranslation::class)->setModelValue($item);
           $section = AdminSection::getModel(ArticleTranslation::class);
-          $forms[] = $section->fireEdit($item->id, ['language_id' => $language->id]);
-          $tabs[] = AdminDisplay::tab(new FormElements($forms), $language->name);
+          // $forms[] = $section->fireEdit($item->id, ['locale_id' => $language->id]);
+          // $tabs[] = AdminDisplay::tab(new FormElements($forms), $language->name);
           $forms = [];
         }
       }

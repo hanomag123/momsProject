@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Language;
+use App\Models\Locale;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LanguageSeeder extends Seeder
+class LocaleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class LanguageSeeder extends Seeder
         $languages = ['ru', 'by'];
 
         foreach($languages as $value) {
-          Language::create(['name' => $value]);
+          Locale::create(['name' => $value]);
         }
     }
 }

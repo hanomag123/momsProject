@@ -21,11 +21,11 @@ use SleepingOwl\Admin\Form\Buttons\SaveAndCreate;
 /**
  * Class Languages
  *
- * @property \App\Models\Language $model
+ * @property \App\Models\Locale $model
  *
  * @see https://sleepingowladmin.ru/#/ru/model_configuration_section
  */
-class Languages extends Section implements Initializable
+class Locales extends Section implements Initializable
 {
   /**
    * @var bool
