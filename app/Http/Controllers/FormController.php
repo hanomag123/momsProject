@@ -14,7 +14,7 @@ class FormController extends Controller
       $name = $request->name;
       $tel = $request->tel;
 
-      Mail::to('zevtaq@mailto.plus')->send(new FeedbackMail(compact('name', 'tel')));
+      Mail::to(env('MAIL_TO'))->send(new FeedbackMail(compact('name', 'tel')));
       Form::create(compact('name', 'tel'));
       
       return response()->json([

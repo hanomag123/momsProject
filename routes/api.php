@@ -20,4 +20,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/events', [ArticleController::class, 'events']);
-Route::get('/events/{year}', [ArticleController::class, 'year']);

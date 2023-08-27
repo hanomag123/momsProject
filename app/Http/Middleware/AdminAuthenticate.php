@@ -17,7 +17,6 @@ class AdminAuthenticate
    */
   public function handle(Request $request, Closure $next, $guard = null): Response
   {
-    $auth = Auth::guard($guard);
 
     if (Auth::guard($guard)->guest()) {
 

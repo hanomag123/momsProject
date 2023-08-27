@@ -63,6 +63,9 @@ export default {
         const events = await axios({
           method: 'get',
           url: '/api/events',
+          params: {
+            locale: document.getElementById('PageLocale').value,
+          }
         })
         this.events = events.data.items;
         this.pagination = events.data.paginate;
@@ -79,6 +82,7 @@ export default {
             year: this.year,
             page: page,
             title: this.title,
+            locale: document.getElementById('PageLocale').value,
           }
         })
         this.events = events.data.items;

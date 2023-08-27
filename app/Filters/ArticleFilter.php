@@ -3,6 +3,13 @@
 namespace App\Filters;
 
 class ArticleFilter extends QueryFilter {
+
+  public function locale($locale = null) {
+    return $this->builder->when($locale, function($query) use($locale) {
+      $query->where('locale_id', $locale);
+    });
+  }
+
   public function year($year=null) {
     return $this->builder->when($year, function($query) use($year) {
       $query->whereYear('date', $year);
@@ -17,7 +24,10 @@ class ArticleFilter extends QueryFilter {
 
   public function title($title = null) {
     return $this->builder->when($title, function($query) use($title) {
-      $query->where('title', 'like', "%$title%");
+      $query->where('title', 'LIKE', "%{$title}%");
     });
   }
+
+
+
 }

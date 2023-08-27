@@ -6,33 +6,15 @@
     @include('main.mainBlock')
 
     <section class="container page-margin">
-        <h2 class="h2">Преимущества</h2>
+        <h2 class="h2">{{$preferences->name}}</h2>
 
         <ul class="advantages-list page-margin-container">
-            @foreach ($preferences as $item)
+            @foreach ($preferences->list as $item)
                 <li class="advantages-item">
                     <h3 class="text-button mob-brblock">{{$item->name}}</h3>
-                    <div>{{$item->description}}</div>
+                    <div>{{$item->desc}}</div>
                 </li>
             @endforeach
-            <li class="advantages-item">
-                <h3 class="text-button mob-brblock">Возможность<br> дистанционного обучения</h3>
-                <div>Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies bibendum dolor suscipit. Enim
-                    facilisis
-                    condimentum nisi maecenas viverra pellentesque.</div>
-            </li>
-            <li class="advantages-item">
-                <h3 class="text-button mob-brblock">поступление<br> без Вступительных испытаний </h3>
-                <div>Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies bibendum dolor suscipit. Enim
-                    facilisis
-                    condimentum nisi maecenas viverra pellentesque.</div>
-            </li>
-            <li class="advantages-item">
-                <h3 class="text-button advantages-title">оплата обучения <br>любым способом</h3>
-                <div>Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies bibendum dolor suscipit. Enim
-                    facilisis
-                    condimentum nisi maecenas viverra pellentesque.</div>
-            </li>
         </ul>
     </section>
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('preferences', function (Blueprint $table) {
             $table->id();
             $table->string('name', 250);
-            $table->string('description', 750);
+            $table->longText('list')->nullable();
             $table->timestamps();
         });
     }

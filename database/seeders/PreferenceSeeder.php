@@ -8,19 +8,22 @@ use Illuminate\Database\Seeder;
 
 class PreferenceSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Preference::create([
-          'name' => 'название 1',
-          'description' => 'текст 1',
-        ]);
+  /**
+   * Run the database seeds.
+   */
+  public function run(): void
+  {
+    $names = ['ВОЗМОЖНОСТЬ ДИСТАНЦИОННОГО ОБУЧЕНИЯ', 'ПОСТУПЛЕНИЕ БЕЗ ВСТУПИТЕЛЬНЫХ ИСПЫТАНИЙ', 'ОПЛАТА ОБУЧЕНИЯ ЛЮБЫМ СПОСОБОМ'];
 
-        Preference::create([
-          'name' => 'название 2',
-          'description' => 'текст 2',
-        ]);
+    $desc = 'Lorem ipsum dolor sit amet consectetur. Nullam interdum ultricies bibendum dolor suscipit. Enim facilisis condimentum nisi maecenas viverra pellentesque.';
+    $arr = [];
+    foreach ($names as $name) {
+      $arr[] = ['name' => $name, 'desc' => $desc];
     }
+
+    Preference::create([
+      'name' => 'Преимущества',
+      'list' => json_encode($arr),
+    ]);
+  }
 }

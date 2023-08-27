@@ -15,8 +15,10 @@ class MainController extends Controller
   {
 
     $local = Locale::where('name', App::getLocale())->first();
-    $preferences = Preference::all();
 
+    $preferences = Preference::find(1);
+    $preferences->list = json_decode($preferences->list);
+    
     if (isset($local)) {
 
       $mainBlock = MainBlock::where('locale_id', $local['id'])->first();

@@ -7,6 +7,7 @@ use AdminColumn;
 use AdminForm;
 use AdminFormElement;
 use AdminColumnFilter;
+use AdminSection;
 use App\Models\Preference;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
@@ -35,7 +36,7 @@ class Preferences extends Section implements Initializable
   /**
    * @var string
    */
-  protected $title;
+  protected $title = 'Преимущества';
 
   /**
    * @var string
@@ -57,47 +58,8 @@ class Preferences extends Section implements Initializable
    */
   public function onDisplay($payload = [])
   {
-    $columns = [
-      AdminColumn::text('id', '#')->setWidth('50px')->setHtmlAttribute('class', 'text-center'),
-      AdminColumn::link('name', 'Заголовок', 'created_at')
-        ->setSearchCallback(function ($column, $query, $search) {
-          return $query
-            ->orWhere('name', 'like', '%' . $search . '%')
-            ->orWhere('created_at', 'like', '%' . $search . '%');
-        })
-        ->setOrderable(function ($query, $direction) {
-          $query->orderBy('created_at', $direction);
-        }),
-      AdminColumn::boolean('name', 'On'),
-      AdminColumn::text('created_at', 'Created / updated', 'updated_at')
-        ->setWidth('160px')
-        ->setOrderable(function ($query, $direction) {
-          $query->orderBy('updated_at', $direction);
-        })
-        ->setSearchable(false),
-    ];
-
-    $display = AdminDisplay::datatables()
-      ->setName('firstdatatables')
-      ->setOrder([[0, 'asc']])
-      ->setDisplaySearch(true)
-      ->paginate(25)
-      ->setColumns($columns)
-      ->setHtmlAttribute('class', 'table-primary table-hover th-center');
-
-    $display->setColumnFilters([
-      AdminColumnFilter::select()
-        ->setModelForOptions(Preference::class, 'name')
-        ->setLoadOptionsQueryPreparer(function ($element, $query) {
-          return $query;
-        })
-        ->setDisplay('name')
-        ->setColumnName('id')
-        ->setPlaceholder('Все имена'),
-    ]);
-    $display->getColumnFilters()->setPlacement('card.heading');
-
-    return $display;
+    $section = AdminSection::getModel(Preference::class);
+    return $section->fireEdit(1);
   }
 
   /**
@@ -110,16 +72,21 @@ class Preferences extends Section implements Initializable
   {
     $form = AdminForm::card()->addBody([
       AdminFormElement::columns()->addColumn([
-        AdminFormElement::text('name', 'Name')
+        AdminFormElement::text('name', 'Заголовок')
           ->required(),
-        AdminFormElement::wysiwyg('description', 'Текст статьи'),
         AdminFormElement::html('<hr>'),
-        AdminFormElement::datetime('created_at')
-          ->setVisible(true)
-          ->setReadonly(false),
 
+        AdminFormElement::hasManyLocal(
+          'list',
+          [
+            AdminFormElement::text('name', 'Подзаголовок'),
+            AdminFormElement::textarea('desc', 'Описание'),
+          ],
+          'Список'
+        ),
       ], 'col-xs-12 col-sm-6 col-md-4 col-lg-4')->addColumn([
-        AdminFormElement::html("<iframe style='height: 100vh; width: 100%' src=". route('main') . "></iframe>")
+        // AdminFormElement::html("<iframe style='height: 100vh; width: 100%' src=". route('main') . "></iframe>")
+
       ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
     ]);
 

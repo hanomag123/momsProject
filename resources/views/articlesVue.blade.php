@@ -9,6 +9,7 @@
 
         <h1 class="h2 title-margin">Новости</h1>
 
+        <input type="hidden" name="locale" id="PageLocale" value="{{$locale->id}}">
         <div id="vueFilter"></div>
         @vite('resources/js/filter.js')
 

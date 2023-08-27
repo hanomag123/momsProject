@@ -114,6 +114,8 @@ class Articles extends Section implements Initializable
       $form = AdminForm::form();
       $form->setElements([
         AdminFormElement::text('id', 'id')->setReadonly(true),
+        AdminFormElement::text('title', 'Заголовок статьи'),
+        AdminFormElement::wysiwyg('content', 'Текст статьи'),
         AdminFormElement::image('image', 'Главная картинка'),
       ]);
 
