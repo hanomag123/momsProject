@@ -76,18 +76,17 @@ class Preferences extends Section implements Initializable
           ->required(),
         AdminFormElement::html('<hr>'),
 
+
+      ], 'col-xs-12 col-sm-6 col-md-4 col-lg-4')->addColumn([
         AdminFormElement::hasManyLocal(
           'list',
           [
             AdminFormElement::text('name', 'Подзаголовок'),
-            AdminFormElement::textarea('desc', 'Описание'),
+            AdminFormElement::text('desc', 'Описание'),
           ],
           'Список'
         ),
-      ], 'col-xs-12 col-sm-6 col-md-4 col-lg-4')->addColumn([
-        // AdminFormElement::html("<iframe style='height: 100vh; width: 100%' src=". route('main') . "></iframe>")
-
-      ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
+      ], 'col-lg-12 three-column-draggable'),
     ]);
 
     $form->getButtons()->setButtons([

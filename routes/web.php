@@ -33,6 +33,7 @@ Route::get('/map', function () {
 
 Route::get('/aboutus', [MainController::class, 'aboutus'])->name('oneWindow');
 
+
 require __DIR__.'/auth.php';
 
 

@@ -37,7 +37,7 @@ class ArticleController extends Controller
       $articles[] = $article;
     }
 
-    return ['items' => $articles, 'paginate' => $paginate];
+    return ['items' => $articles, 'paginate' => $paginate, $_GET];
   }
 
 

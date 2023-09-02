@@ -10,4 +10,4 @@
 <title>@yield('title')</title>
 
 <!-- CSS only -->
-@vite(['resources/scss/style.scss'])
+@vite(['resources/scss/style.scss', 'resources/css/app.css'])

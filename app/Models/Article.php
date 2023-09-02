@@ -5,6 +5,7 @@ namespace App\Models;
 use App;
 use App\Filters\QueryFilter;
 use App\Helper\Helper;
+use App\Services\ImageResizer;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -47,5 +48,9 @@ class Article extends Model
 
   public function scopeFilter(Builder $builder, QueryFilter $filter) {
     return $filter->apply($builder);
+  }
+
+  public function getPreviewBlogAttribute () { 
+    return (new ImageResizer())->generatePreviews($this->image, $this->slug, 374, 325, 'posts');
   }
 }

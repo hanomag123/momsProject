@@ -23,6 +23,7 @@ class ArticleFilter extends QueryFilter {
   }
 
   public function title($title = null) {
+    $title = urldecode($title);
     return $this->builder->when($title, function($query) use($title) {
       $query->where('title', 'LIKE', "%{$title}%");
     });

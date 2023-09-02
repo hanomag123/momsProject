@@ -17,7 +17,6 @@ class AdminAuthenticate
    */
   public function handle(Request $request, Closure $next, $guard = null): Response
   {
-
     if (Auth::guard($guard)->guest()) {
 
       if ($request->ajax() || $request->wantsJson()) {
@@ -27,7 +26,7 @@ class AdminAuthenticate
       }
     }
 
-    if (empty(auth()->user()->role)) {
+    if (empty(auth()->user()->role ) || auth()->user()->role->role == 'guest') {
       abort(403, 'Access dinied');
     } else {
       return $next($request);

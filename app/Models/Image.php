@@ -17,4 +17,6 @@ class Image extends Model
     public function mainBlocks(): HasMany {
       return $this->hasMany(MainBlock::class);
     }
+
+    
 }

@@ -5,12 +5,12 @@
 @section('content')
     <section class="container">
 
-      <x-breadcrumbs cur="Новости" :pages="[
-          // [
-          //   'href' => '#',
-          //   'text' => 'Components',
-          // ]
-      ]"/>
+        <x-breadcrumbs cur="Новости" :pages="[
+                // [
+                //   'href' => '#',
+                //   'text' => 'Components',
+                // ]
+            ]" />
 
         <h1 class="h2 title-margin">Новости</h1>
 
@@ -51,8 +51,19 @@
                                 <div class="h5">{{ $article->date }}</div>
 
                                 @isset($article->image)
-                                    <div class="img-cover rounded news-img"><img src="{{ $article->image }}" alt="news"></div>
+                                    @if (count($article->previewBlog) > 0)
+                                        <div class="img-cover rounded news-img">
+                                            <picture>
+                                                <source srcset="{{ $article->previewBlog['@1x'] }}" media="(max-width:500px)">
+                                                <img src="{{ $article->previewBlog['@2x'] }}" alt="{{ $article->title }}">
+                                            </picture>
+                                        </div>
+                                    @else
+                                        <div class="img-cover rounded news-img"><img src="{{ $article->image }}"
+                                                alt="{{ $article->title }}"></div>
+                                    @endif
                                 @endisset
+
                                 <div class="news-title h4">{{ $article->title }}</div>
                                 <div class="news-desc text-2">{!! $article->content !!}</div>
                             </a>

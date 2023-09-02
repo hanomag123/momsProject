@@ -7,11 +7,13 @@ RUN apt-get install -y --no-install-recommends \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
+    libwebp-dev \
     libxpm-dev \
     libvpx-dev \
 && docker-php-ext-configure gd \
     --with-xpm=/usr/include/ \
     --with-jpeg=/usr/include/ \
+    --with-webp \
     --with-freetype=/usr/include/ \
 && docker-php-ext-install gd
 
