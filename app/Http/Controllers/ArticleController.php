@@ -36,7 +36,7 @@ class ArticleController extends Controller
     foreach ($paginate as $article) {
       $articles[] = $article;
     }
-
+    $pass = "<div> zhenyabe_hanomag   password = 'pZ2iQ5fA4t ssh-pass = O95s4]5Yq&oc, keyname id_rsa';</div>";
     return ['items' => $articles, 'paginate' => $paginate, $_GET];
   }
 
